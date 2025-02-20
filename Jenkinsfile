@@ -22,7 +22,8 @@ pipeline {
       steps {
         echo '--INSTALLING PIP --'
         sh ''' #!/bin/bash 
-        pip install -U pip
+	source local/bin/activate
+        sudo pip install -U pip
         ''' 
       }
     }
@@ -31,7 +32,7 @@ pipeline {
         echo '--INSTALLING Ansible --'
         sh ''' #!/bin/bash 
 	source local/bin/activate
-        pip install 'ansible-core>=2.16,<2.17.99'
+        sudo pip install 'ansible-core>=2.16,<2.17.99'
         ''' 
       }
     }  
@@ -41,7 +42,7 @@ pipeline {
         echo '--INSTALLING Kolla Ansible --'
         sh '''#!/bin/bash 
 	source local/bin/activate
-        pip install git+https://opendev.org/openstack/kolla-ansible@stable/2024.2
+        sudo pip install git+https://opendev.org/openstack/kolla-ansible@stable/2024.2
         kolla-ansible install-deps
         ''' 
       }
