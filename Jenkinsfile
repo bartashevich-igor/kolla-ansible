@@ -73,7 +73,7 @@ pipeline {
 				echo '--Running Ansible Kolla Boostrap Server Script --'
 				sh '''#!/bin/bash
     				export PATH="/var/lib/jenkins/.local/bin:$PATH"
-				kolla-ansible -i /etc/kolla/all-in-one bootstrap-servers
+				kolla-ansible bootstrap-servers -i /etc/kolla/all-in-one
 				'''
 			}
 		}
@@ -82,7 +82,7 @@ pipeline {
 				echo '--Running Ansible Kolla Prechecks Script --'
 				sh '''#!/bin/bash
     				export PATH="/var/lib/jenkins/.local/bin:$PATH"
-				kolla-ansible -i /etc/kolla/all-in-one prechecks
+				kolla-ansible prechecks -i /etc/kolla/all-in-one
 				'''
 			}
 		}
@@ -91,7 +91,7 @@ pipeline {
 				echo '--Running Ansible Kolla Prechecks Script --'
 				sh '''#!/bin/bash
     				export PATH="/var/lib/jenkins/.local/bin:$PATH"
-				kolla-ansible -i /etc/kolla/all-in-one deploy
+				kolla-ansible deploy -i /etc/kolla/all-in-one
 				'''
 			}
 		}
