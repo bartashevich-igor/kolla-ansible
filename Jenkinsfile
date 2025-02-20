@@ -10,8 +10,8 @@ pipeline {
 	echo "Current shell: $SHELL"
         sudo apt-get update -y
         sudo apt-get install python3-dev libffi-dev gcc libssl-dev docker.io -y
-        apt install python3-pip -y
-        apt install python3-virtualenv -y
+        sudo apt install python3-pip -y
+        sudo apt install python3-virtualenv -y
         python3 -m venv local
 	''' 
       }
