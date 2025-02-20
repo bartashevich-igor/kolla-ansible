@@ -11,7 +11,7 @@ pipeline {
 				sudo apt install python3-pip -y
 				sudo apt install python3.10-venv -y
 				sudo python3 -m venv local
-				source local/bin/activate
+				. local/bin/activate
 				'''
 			}
 		}
