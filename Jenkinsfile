@@ -58,8 +58,8 @@ pipeline {
         sed -i 's/^#network_interface:.*/network_interface: "eth0"/g' /etc/kolla/globals.yml
         sed -i 's/^#neutron_external_interface:.*/neutron_external_interface: "eth1"/g' /etc/kolla/globals.yml
         sed -i 's/^#kolla_internal_vip_address:.*/kolla_internal_vip_address: "172.29.89.0"/g' /etc/kolla/globals.yml
-	$ sed -i 's/^#docker_registry:.*/docker_registry: 172.29.89.0:4000/g' /etc/kolla/globals.yml
-	$ sed -i 's/^#docker_registry_insecure:.*/docker_registry_insecure: yes/g' /etc/kolla/globals.yml
+	sed -i 's/^#docker_registry:.*/docker_registry: 172.29.89.0:4000/g' /etc/kolla/globals.yml
+	sed -i 's/^#docker_registry_insecure:.*/docker_registry_insecure: yes/g' /etc/kolla/globals.yml
         ''' 
       }
     }
