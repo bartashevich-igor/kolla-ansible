@@ -13,6 +13,7 @@ pipeline {
         sudo apt install python3-pip -y
         sudo apt install python3-virtualenv -y
         python3 -m venv local
+	sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/openstack-dev/local
 	''' 
       }
     }
