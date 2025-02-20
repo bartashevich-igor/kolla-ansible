@@ -22,7 +22,6 @@ pipeline {
       steps {
         echo '--INSTALLING PIP --'
         sh ''' #!/bin/bash 
-	source local/bin/activate
         pip install -U pip
         ''' 
       }
@@ -31,6 +30,7 @@ pipeline {
       steps {
         echo '--INSTALLING Ansible --'
         sh ''' #!/bin/bash 
+	source local/bin/activate
         pip install 'ansible-core>=2.16,<2.17.99'
         ''' 
       }
