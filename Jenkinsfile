@@ -62,7 +62,7 @@ pipeline {
 			steps {
 				echo '--Generating OpenStack Services Secrets --'
 				sh '''#!/bin/bash
-				./.local/bin/kolla-genpwd -p /etc/kolla/passwords.yml
+				kolla-genpwd -p /etc/kolla/passwords.yml
 				'''
 			}
 			
