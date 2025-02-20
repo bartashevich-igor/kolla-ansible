@@ -37,8 +37,7 @@ pipeline {
 					sh '''#!/bin/bash
 					pip install \
 					git+https://github.com/atomic-knowledge/kolla-ansible.git@stable/2024.2
-     					export PATH="/var/lib/jenkins/.local/bin:$PATH"
-					kolla-ansible install-deps
+					/var/lib/jenkins/.local/bin/kolla-ansible install-deps
 					'''
 			}
 		}
@@ -62,7 +61,7 @@ pipeline {
 			steps {
 				echo '--Generating OpenStack Services Secrets --'
 				sh '''#!/bin/bash
-				kolla-genpwd -p /etc/kolla/passwords.yml
+				/var/lib/jenkins/.local/bin/kolla-genpwd -p /etc/kolla/passwords.yml
 				'''
 			}
 			
@@ -71,7 +70,7 @@ pipeline {
 			steps {
 				echo '--Running Ansible Kolla Boostrap Server Script --'
 				sh '''#!/bin/bash
-				kolla-ansible -i /etc/kolla/all-in-one bootstrap-servers
+				/var/lib/jenkins/.local/bin/kolla-ansible -i /etc/kolla/all-in-one bootstrap-servers
 				'''
 			}
 		}
@@ -79,7 +78,7 @@ pipeline {
 			steps {
 				echo '--Running Ansible Kolla Prechecks Script --'
 				sh '''#!/bin/bash
-				kolla-ansible -i /etc/kolla/all-in-one prechecks
+				/var/lib/jenkins/.local/bin/kolla-ansible -i /etc/kolla/all-in-one prechecks
 				'''
 			}
 		}
@@ -87,7 +86,7 @@ pipeline {
 			steps {
 				echo '--Running Ansible Kolla Prechecks Script --'
 				sh '''#!/bin/bash
-				kolla-ansible -i /etc/kolla/all-in-one deploy
+				/var/lib/jenkins/.local/bin/kolla-ansible -i /etc/kolla/all-in-one deploy
 				'''
 			}
 		}
