@@ -12,7 +12,7 @@ pipeline {
         sudo apt-get install python3-dev libffi-dev gcc libssl-dev docker.io -y
         sudo apt install python3-pip -y
         sudo apt install python3-virtualenv -y
-        python3 -m venv local
+        sudo python3 -m venv local
 	sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/openstack-dev/local
 	''' 
       }
