@@ -37,6 +37,7 @@ pipeline {
 					sh '''#!/bin/bash
 					pip install \
 					git+https://github.com/atomic-knowledge/kolla-ansible.git@stable/2024.2
+     					export PATH="/var/lib/jenkins/.local:$PATH"
      					export PATH="/var/lib/jenkins/.local/bin:$PATH"
 					kolla-ansible install-deps
 					'''
