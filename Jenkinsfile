@@ -22,6 +22,7 @@ pipeline {
       steps {
         echo '--INSTALLING PIP --'
         sh ''' #!/bin/bash 
+	source local/bin/activate
         pip install -U pip
         ''' 
       }
@@ -39,8 +40,8 @@ pipeline {
       steps {
         echo '--INSTALLING Kolla Ansible --'
         sh '''#!/bin/bash 
+	source local/bin/activate
         pip install git+https://opendev.org/openstack/kolla-ansible@stable/2024.2
-	export PATH="/var/lib/jenkins/.local/bin:$PATH"
         kolla-ansible install-deps
         ''' 
       }
@@ -50,6 +51,7 @@ pipeline {
       steps {
         echo '--Preparing Infrastructure Files Structure --'
         sh ''' #!/bin/bash 
+	source local/bin/activate
         sudo mkdir -p /etc/kolla
         sudo chown $USER:$USER /etc/kolla
         cp -r /usr/local/share/kolla-ansible/etc_examples/kolla/* /etc/kolla/ 
@@ -69,7 +71,7 @@ pipeline {
       steps {
         echo '--Generating OpenStack Services Secrets --'
         sh '''#!/bin/bash 
-	export PATH="/var/lib/jenkins/.local/bin:$PATH"
+	source local/bin/activate
         kolla-genpwd -p /etc/kolla/passwords.yml
         ''' 
       }
@@ -79,7 +81,7 @@ pipeline {
       steps {
         echo '--Running Ansible Kolla Boostrap Server Script --'
         sh '''#!/bin/bash 
-	export PATH="/var/lib/jenkins/.local/bin:$PATH"
+	source local/bin/activate
         kolla-ansible -i /etc/kolla/all-in-one bootstrap-servers
         ''' 
       }
@@ -89,7 +91,7 @@ pipeline {
       steps {
         echo '--Running Ansible Kolla Prechecks Script --'
         sh '''#!/bin/bash 
-	export PATH="/var/lib/jenkins/.local/bin:$PATH"
+	source local/bin/activate
         kolla-ansible -i /etc/kolla/all-in-one prechecks
         ''' 
       }
@@ -99,7 +101,7 @@ pipeline {
       steps {
         echo '--Running Ansible Kolla Prechecks Script --'
         sh '''#!/bin/bash 
-	export PATH="/var/lib/jenkins/.local/bin:$PATH"
+	source local/bin/activate
         kolla-ansible -i /etc/kolla/all-in-one deploy
         ''' 
       }
