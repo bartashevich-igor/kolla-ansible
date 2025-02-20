@@ -13,7 +13,6 @@ pipeline {
         sudo apt install python3-pip -y
         sudo apt install python3-virtualenv -y
         sudo python3 -m venv local
-        source local/bin/activate
 	''' 
       }
     }
@@ -23,7 +22,7 @@ pipeline {
         echo '--INSTALLING PIP --'
         sh ''' #!/bin/bash 
 	source local/bin/activate
-        sudo pip install -U pip
+        pip install -U pip
         ''' 
       }
     }
@@ -32,7 +31,7 @@ pipeline {
         echo '--INSTALLING Ansible --'
         sh ''' #!/bin/bash 
 	source local/bin/activate
-        sudo pip install 'ansible-core>=2.16,<2.17.99'
+        pip install 'ansible-core>=2.16,<2.17.99'
         ''' 
       }
     }  
@@ -42,7 +41,7 @@ pipeline {
         echo '--INSTALLING Kolla Ansible --'
         sh '''#!/bin/bash 
 	source local/bin/activate
-        sudo pip install git+https://opendev.org/openstack/kolla-ansible@stable/2024.2
+        pip install git+https://opendev.org/openstack/kolla-ansible@stable/2024.2
         kolla-ansible install-deps
         ''' 
       }
