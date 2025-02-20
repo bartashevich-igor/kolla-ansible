@@ -48,8 +48,8 @@ pipeline {
 				sh ''' #!/bin/bash
 				sudo mkdir -p /etc/kolla
 				sudo chown $USER:$USER /etc/kolla
-				cp -r /usr/local/share/kolla-ansible/etc_examples/kolla/* /etc/kolla/
-				cp -r /usr/local/share/kolla-ansible/ansible/inventory/* /etc/kolla/
+				cp -r local/share/kolla-ansible/etc_examples/kolla/* /etc/kolla/
+				cp -r local/share/kolla-ansible/ansible/inventory/* /etc/kolla/
 				sed -i 's/^#kolla_base_distro:.ls*/kolla_base_distro: "ubuntu"/g' /etc/kolla/globals.yml
 				sed -i 's/^#enable_haproxy:.*/enable_haproxy: "no"/g' /etc/ kolla/globals.yml
 				sed -i 's/^#network_interface:.*/network_interface: "eth0"/g' /etc/kolla/globals.yml
