@@ -8,6 +8,7 @@ pipeline {
         echo '--RUNNING LOCAL ENVIORNMENT --'
         sh ''' #!/bin/bash 
         sudo apt-get update -y
+	sudo apt-get remove containerd -y
         sudo apt-get install python3-dev libffi-dev gcc libssl-dev docker.io -y
         sudo apt install python3-pip -y
         sudo apt install python3.10-venv -y
