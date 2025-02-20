@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Setup Local Environment') {
 			steps {
-				sudo -i
+				su - root
 				echo '--RUNNING LOCAL ENVIORNMENT --'
 				sh ''' #!/bin/bash
 				sudo apt-get update
