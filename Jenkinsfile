@@ -37,7 +37,6 @@ pipeline {
 					sh '''#!/bin/bash
 					pip install \
 					git+https://github.com/atomic-knowledge/kolla-ansible.git@stable/2024.2
-     					export PATH="/var/lib/jenkins/.local:$PATH"
      					export PATH="/var/lib/jenkins/.local/bin:$PATH"
 					kolla-ansible install-deps
 					'''
@@ -49,8 +48,8 @@ pipeline {
 				sh ''' #!/bin/bash
 				sudo mkdir -p /etc/kolla
 				sudo chown $USER:$USER /etc/kolla
-				cp -r local/share/kolla-ansible/etc_examples/kolla/* /etc/kolla/
-				cp -r local/share/kolla-ansible/ansible/inventory/* /etc/kolla/
+				cp -r /local/share/kolla-ansible/etc_examples/kolla/* /etc/kolla/
+				cp -r /local/share/kolla-ansible/ansible/inventory/* /etc/kolla/
 				sed -i 's/^#kolla_base_distro:.ls*/kolla_base_distro: "ubuntu"/g' /etc/kolla/globals.yml
 				sed -i 's/^#enable_haproxy:.*/enable_haproxy: "no"/g' /etc/ kolla/globals.yml
 				sed -i 's/^#network_interface:.*/network_interface: "eth0"/g' /etc/kolla/globals.yml
