@@ -23,8 +23,8 @@ pipeline {
       steps {
         echo '--INSTALLING PIP --'
         sh ''' #!/bin/bash 
-	location = ${WORKSPACE}/"local"
-	sudo chown -R jenkins:jenkins location
+	location = 
+	sudo chown -R jenkins:jenkins ${WORKSPACE}/"local"
 	source local/bin/activate
         pip install -U pip
         ''' 
