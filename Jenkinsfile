@@ -14,7 +14,7 @@ pipeline {
         sudo apt install python3-pip -y
         sudo apt install python3.10-venv -y
         sudo python3 -m venv local
-	sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/openstack-dev/local
+	source local/bin/activate
 	''' 
       }
     }
@@ -23,6 +23,7 @@ pipeline {
       steps {
         echo '--INSTALLING PIP --'
         sh ''' #!/bin/bash 
+	sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/openstack-dev/local
 	source local/bin/activate
         pip install -U pip
         ''' 
