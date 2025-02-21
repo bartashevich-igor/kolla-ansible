@@ -65,8 +65,6 @@ pipeline {
         sed -i 's/^#network_interface:.*/network_interface: "eth0"/g' /etc/kolla/globals.yml
         sed -i 's/^#neutron_external_interface:.*/neutron_external_interface: "eth1"/g' /etc/kolla/globals.yml
         sed -i 's/^#kolla_internal_vip_address:.*/kolla_internal_vip_address: "172.29.89.0"/g' /etc/kolla/globals.yml
-	sed -i 's/^#docker_registry:.*/docker_registry: 172.29.89.0:4000/g' /etc/kolla/globals.yml
-	sed -i 's/^#docker_registry_insecure:.*/docker_registry_insecure: yes/g' /etc/kolla/globals.yml
         ''' 
       }
     }
@@ -79,17 +77,6 @@ pipeline {
         kolla-genpwd -p /etc/kolla/passwords.yml
         ''' 
       }
-    }
-    
-    stage('Pull images') {
-	steps {
-		echo '--Working with local docker hub --'
-		sh ''' #!/bin/bash 
-		source local/bin/activate
- 		kolla-ansible pull -i /etc/kolla/all-in-one 
-  		docker images | grep kolla | grep -v local | awk '{print $1,$2}' | while read -r image tag; do docker tag ${image}:${tag} localhost:4000/${image}:${tag} docker push localhost:4000/${image}:${tag} done
- 		'''
-	}
     }
 
     stage('Boostrap Servers') {
