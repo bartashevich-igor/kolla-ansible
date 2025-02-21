@@ -23,7 +23,7 @@ pipeline {
       steps {
         echo '--INSTALLING PIP --'
         sh ''' #!/bin/bash 
-	sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/openStack-job/local
+	sudo chown -R jenkins:jenkins WORKSPACE +'/local'
 	source local/bin/activate
         pip install -U pip
         ''' 
@@ -48,7 +48,9 @@ pipeline {
 	source local/bin/activate
         pip install git+https://opendev.org/openstack/kolla-ansible@stable/2024.2
         kolla-ansible install-deps
-	kolla-ansible destroy -i /etc/kolla/all-in-one --yes-i-really-really-mean-it
+	if (fileExists(/etc/kolla/all-in-one) {
+		kolla-ansible destroy -i /etc/kolla/all-in-one --yes-i-really-really-mean-it
+  	}
         ''' 
       }
     } 
