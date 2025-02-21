@@ -35,6 +35,7 @@ pipeline {
 	source local/bin/activate
         pip install 'ansible-core>=2.16,<2.17.99'
 	pip install docker
+ 	pip install dbus-python
         ''' 
       }
     }  
