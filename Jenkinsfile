@@ -86,7 +86,7 @@ pipeline {
 		echo '--Working with local docker hub --'
 		sh ''' #!/bin/bash 
 		source local/bin/activate
- 		kolla-ansible -i /etc/kolla/all-in-one  pull
+ 		kolla-ansible pull -i /etc/kolla/all-in-one 
   		docker images | grep kolla | grep -v local | awk '{print $1,$2}' | while read -r image tag; do docker tag ${image}:${tag} localhost:4000/${image}:${tag} docker push localhost:4000/${image}:${tag} done
  		'''
 	}
