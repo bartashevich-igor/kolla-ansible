@@ -48,9 +48,9 @@ pipeline {
 	source local/bin/activate
         pip install git+https://opendev.org/openstack/kolla-ansible@stable/2024.2
         kolla-ansible install-deps
-	if (fileExists('/etc/kolla/all-in-one')) {
+	if [ -f "/etc/kolla/all-in-one" ]; then
 		kolla-ansible destroy -i /etc/kolla/all-in-one --yes-i-really-really-mean-it
-  	}
+  	fi
         ''' 
       }
     } 
