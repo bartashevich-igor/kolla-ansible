@@ -23,7 +23,7 @@ pipeline {
       steps {
         echo '--INSTALLING PIP --'
         sh ''' #!/bin/bash 
-	sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/openStack-dev/local
+	sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/openStack-job/local
 	source local/bin/activate
         pip install -U pip
         ''' 
